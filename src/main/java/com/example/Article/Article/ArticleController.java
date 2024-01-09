@@ -17,7 +17,7 @@ import java.util.List;
 public class ArticleController {
 
 
-   private final ArticleService articleService;
+    private final ArticleService articleService;
 
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
@@ -25,7 +25,7 @@ public class ArticleController {
 
 
     @GetMapping("/list")
-    public String articleList(Model model){
+    public String articleList(Model model) {
         List<Article> articleList = this.articleService.articleList();
         model.addAttribute("articleList", articleList);
         return "article_list";
@@ -33,31 +33,29 @@ public class ArticleController {
 
 
     @GetMapping(value = "/detail/{id}")
-    public String articleDetail(Model model, @PathVariable("id") Integer id){
+    public String articleDetail(Model model, @PathVariable("id") Integer id) {
         Article article = this.articleService.getArticle(id);
         model.addAttribute("article", article);
         return "article_detail";
     }
 
 
-
     @GetMapping("/create")
-    public String articleCreate(ArticleForm articleForm){
+    public String articleCreate(ArticleForm articleForm) {
 
         return "article_form";
     }
 
 
     @PostMapping("/create")
-    public String articleCreate(@Valid ArticleForm articleForm, BindingResult bindingResult){
+    public String articleCreate(@Valid ArticleForm articleForm, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "article_detail";
         }
-        this.articleService.create(articleForm.getSubject(), articleForm.getContent() );
+        this.articleService.create(articleForm.getSubject(), articleForm.getContent());
         return "redirect:/article/list";
     }
-
 
 
 }

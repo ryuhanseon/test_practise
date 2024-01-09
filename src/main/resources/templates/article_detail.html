@@ -1,7 +1,10 @@
-<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-<h1 th:text="${article.subject}"></h1>
-<div th:text="${article.content}"></div>
+<html>
+<div class="container my-3">
+    <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+    <h1 th:text="${article.subject}"></h1>
+    <div th:text="${article.content}"></div>
 
     <a th:href="@{/article/list}" class="btn btn-primary">목록으로 돌아가기</a>
-
+</div>
+</html>
 
